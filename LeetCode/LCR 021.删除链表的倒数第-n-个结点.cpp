@@ -38,27 +38,23 @@ class Solution
 public:
     ListNode *removeNthFromEnd(ListNode *head, int n)
     {
-        ListNode *nodeArr[30];
-        ListNode *cur = head, *pre = nullptr;
+        ListNode *fast = head, *slow = head;
         int i = 0;
-        while (cur != nullptr)
+        while (fast != nullptr)
         {
-            nodeArr[i] = cur;
-            cur = cur->next;
+            fast = fast->next;
+            if (i > n)
+            {
+                slow = slow->next;
+            }
             i++;
         }
-        int len = i;
-        i = len - n; // 这里的i代表需要删除的下标
-        cur = nodeArr[i];
-        if (i != 0)
-        {
-            pre = nodeArr[i - 1];
-            pre->next = cur->next;
-            return head;
-        }
+        if (n == i)
+            return head->next;
         else
         {
-            return cur->next;
+            slow->next = slow->next->next;
+            return head;
         }
     }
 };
