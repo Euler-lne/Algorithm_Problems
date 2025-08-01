@@ -18,6 +18,9 @@ int main()
         prefix_sum[i] += prefix_sum[i - 1];
     }
     stack<int> s;
+    // 当前值 cur
+    // 左侧值 left
+    // 右侧值 right
     for (int i = 0; i < n; i++) {
         while (!s.empty() && arr[s.top()] > arr[i]) {
             int cur = s.top();
