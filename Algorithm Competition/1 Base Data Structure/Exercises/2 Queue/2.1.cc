@@ -1,4 +1,5 @@
 #include <iostream>
+<<<<<<< HEAD
 #include <vector>
 
 using namespace std;
@@ -36,3 +37,7 @@ int main()
     }
     return 0;
 }
+=======
+
+using namespace std;
+>>>>>>> 40bf9760bce199b22dad76afb97d5adc7c7cb628
