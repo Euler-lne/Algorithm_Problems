@@ -1,18 +1,17 @@
 #include <algorithm>
-#include <iomanip>
 #include <iostream>
 #include <queue>
 #include <string>
 using namespace std;
-
 int main()
 {
-    string s;
-    while (1) {
-        cin >> s;
-        if (s == "END")
-            break;
+    int n;
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        int m;
+        string s;
         priority_queue<int, vector<int>, greater<int>> q;
+        cin >> m >> s;
         sort(s.begin(), s.end());
         int num = 1;
         for (int i = 1; i <= s.length(); i++) {
@@ -31,12 +30,8 @@ int main()
             int b = q.top();
             q.pop();
             q.push(a + b);
-            ans += a + b;
+            ans += (a + b);
         }
-        q.pop();
-        cout << s.length() * 8 << " " << ans << " ";
-        cout << setiosflags(ios::fixed);
-        cout << setprecision(1) << (double)s.length() * 8 / (double)ans << endl;
+        cout << (m <= ans ? "yes" : "no") << endl;
     }
-    return 0;
 }
