@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int function(vector<int> a, int x)
+int func(vector<int> a, int x)
 {
     return x * x * a[0] + x * a[1] + a[2];
 }
@@ -22,7 +22,7 @@ int main()
             cin >> parameter[i][j];
         }
         for (int j = 1; j <= m; j++) {
-            int ans = function(parameter[i], j);
+            int ans = func(parameter[i], j);
             if (min_heap.size() < m) {
                 min_heap.push(ans);
                 max_heap.push(ans);
