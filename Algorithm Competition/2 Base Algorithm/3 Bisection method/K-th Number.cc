@@ -11,7 +11,7 @@ const int MAX = 0x7fffffff;
 bool check(int mid)
 {
     vector<int> s(n + 1, 0);
-    int ans = 0;
+    long long ans = 0;
     for (int i = 1; i <= n; i++)
         s[i] = s[i - 1] + (a[i - 1] >= mid); // 统计大于预计值的前缀和
     for (int i = k, j = 0; i <= n; i++) {
