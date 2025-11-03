@@ -10,7 +10,7 @@ typedef struct Item {
     int idx, l, r;
 } Item;
 Item w[N * 2];
-int go[N][20]; // 2^20 远大于M
+int go[N * 2][20]; // 2^20 远大于M
 int n, m;
 int res[N];
 
@@ -63,6 +63,6 @@ int main()
     for (int i = 1; i <= n; i++)
         getans(i);
     for (int i = 1; i <= n; i++)
-        cout << res[i] << endl;
+        cout << res[i] << " ";
     return 0;
 }
