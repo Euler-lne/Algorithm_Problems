@@ -80,3 +80,54 @@ For each query, output one integer denotes the minimum number of rows.
 3
 1
 ```
+
+## Solution
+整片文章可以被分成2部分：①中间没有图片的部分；②中间插有图片的部分
+
+可以将这2部分分别用ST离线，f[i][j]表示以第i个单词开始，连续1 << j行能写多少单词。要注意的是：在第②部分中，如果第一个单词的宽度大于dw和w-pw-dw的话，那么这一段
+
+```
+int f1[MX][30]; // 普通行的稀疏表：从第i个单词开始，占用1<<j行能容下的单词数
+int f2[MX][30]; // 图片行的稀疏表：从第i个单词开始，占用1<<j行图片行能容下的单词数
+```
+
+要用快读
+
+```cpp
+int RMQ1(int s)
+{
+    int ans=0;
+    while(s<=n)
+    {
+        int j=0;
+        while((1<<(j+1))<=n&&s+f1[s][j+1]<=n)j++;
+        s+=f1[s][j];
+        ans+=(1<<j);
+    }
+    return ans;
+}
+int RMQ2(int s,int h)
+{
+    if(h==0)return s;
+    while(h&&s<=n)
+    {
+        int j=0;
+        while((1<<(j+1))<=h)j++;
+        s+=f1[s][j];
+        h-=(1<<j);
+    }
+    return s;
+}
+int RMQ3(int s,int h)
+{
+    if(h==0)return s;
+    while(h&&s<=n)
+    {
+        int j=0;
+        while((1<<(j+1))<=h)j++;
+        s+=f2[s][j];
+        h-=(1<<j);
+    }
+    return s;
+}
+```
