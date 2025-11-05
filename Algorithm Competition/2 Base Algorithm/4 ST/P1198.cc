@@ -1,5 +1,5 @@
 #include <iostream>
-#define N 100
+#define N 200005
 
 using namespace std;
 int dp_min[N][20], LOG2[N];
