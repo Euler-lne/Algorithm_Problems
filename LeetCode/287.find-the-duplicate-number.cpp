@@ -33,6 +33,12 @@ class Solution
 public:
     int findDuplicate(vector<int> &nums)
     {
+        // 单链表找环 --> 快慢指针
+        // 1. 快指针一次两步
+        // 2. 慢指针一次一步
+        // 3. 两个指针在环中相遇
+        // 4. 快指针变成一次走一步
+        // 5. 两指针在环开始位置相遇
         int i = 0, j = 0;
         do {
             i = nums[i];

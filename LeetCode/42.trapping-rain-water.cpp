@@ -29,21 +29,40 @@ class Solution
 public:
     int trap(vector<int> &height)
     {
-        // 使用单调递减 这样可以确定最低值
-        // 当前值，左边值 右边值
-        int ans = 0;
-        stack<int> st;
-        for (int i = 0; i < height.size(); i++) {
-            while (!st.empty() && height[st.top()] < height[i]) {
-                int cur = st.top();
-                st.pop();
-                if (st.empty()) // 说明没有左边界
-                    break;
-                int l = st.top();
-                int h = min(height[l], height[i]) - height[cur];
-                ans += (i - l - 1) * h;
+        // // 使用单调递减 这样可以确定最低值
+        // // 当前值，左边值 右边值
+        // int ans = 0;
+        // stack<int> st;
+        // for (int i = 0; i < height.size(); i++) {
+        //     while (!st.empty() && height[st.top()] < height[i]) {
+        //         int cur = st.top();
+        //         st.pop();
+        //         if (st.empty()) // 说明没有左边界
+        //             break;
+        //         int l = st.top();
+        //         int h = min(height[l], height[i]) - height[cur];
+        //         ans += (i - l - 1) * h;
+        //     }
+        //     st.push(i);
+        // }
+        // return ans;
+
+        // 双指针法
+        int n = height.size(), ans = 0;
+        int lmax = height[0], rmax = height[n - 1];
+        int l = 0, r = n - 1;
+        while (l < r) {
+            if (rmax < lmax) { // 右侧位置可以结算，右侧位置是真实的
+                ans += max(0, rmax - height[r]);
+                r--;
+                if (rmax < height[r])
+                    rmax = height[r];
+            } else {
+                ans += max(0, lmax - height[l]);
+                l++;
+                if (lmax < height[l])
+                    lmax = height[l];
             }
-            st.push(i);
         }
         return ans;
     }
