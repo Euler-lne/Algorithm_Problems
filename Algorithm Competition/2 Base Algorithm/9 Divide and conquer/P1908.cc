@@ -41,6 +41,6 @@ int main()
         scanf("%d", &a[i]);
     }
     merge_sort(0, n - 1);
-    printf("%d", cnt);
+    printf("%lld", cnt);
     return 0;
 }
